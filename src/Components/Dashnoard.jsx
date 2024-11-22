@@ -81,7 +81,9 @@ function Dashnoard() {
   <div className='w-[25%] bg-white shadow-lg rounded-lg p-4 m-4 space-y-2'>
     <div className='flex justify-between items-center'>
       <p className='font-medium text-gray-500'>Rejected Applications</p>
-      <img src={rej} alt="" />
+      <img src=
+      
+      {rej} alt="" />
     </div>
     <h1 className='text-4xl font-bold'>60</h1>
     <div className='flex justify-between items-center text-sm text-gray-500'>
