@@ -28,7 +28,9 @@ const JobTable = () => {
   const fetchJobs = async () => {
     try {
       const data = await Jobservice.getAllJobs();
-      setJobs(data);
+      setJobs(data.data);
+      console.log(data.data);
+      
     } catch (error) {
       console.error('Error fetching jobs:', error);
     }
@@ -46,7 +48,7 @@ const JobTable = () => {
   };
 
   const handleJobDetails = (id) => {
-    setSelectedJobId(id); // Set the selected job ID for viewing
+    setSelectedJobId(id); 
   };
 
   return (

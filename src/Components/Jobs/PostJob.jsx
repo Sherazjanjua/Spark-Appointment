@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Jobservice from '../../services/Jobservice';
 
 const JobCreateForm = () => {
+  const [qualificationInput, setQualificationInput] = useState('');
+  const [experienceInput, setExperienceInput] = useState('');
+  const [skillsInput, setSkillsInput] = useState('');
+
   const formik = useFormik({
     initialValues: {
       title: '',
       job_type: '',
+      qualification: [],
+      experience: [],
+      skills: [],
       description: '',
-      requirement: {
-        Qualifications: '',
-        experience: '',
-        Skills: '',
-      },
       post_date: '',
     },
     validationSchema: Yup.object({
       title: Yup.string().required('Job title is required'),
       job_type: Yup.string().required('Job type is required'),
       description: Yup.string().required('Job description is required'),
-      requirement: Yup.object({
-        Qualifications: Yup.string().required('Qualifications are required'),
-        experience: Yup.string().required('Experience is required'),
-        Skills: Yup.string().required('Skills are required'),
-      }),
+      qualification: Yup.array().min(1, 'At least one qualification is required').required('Qualifications are required'),
+      experience: Yup.array().min(1, 'At least one experience level is required').required('Experience is required'),
+      skills: Yup.array().min(1, 'At least one skill is required').required('Skills are required'),
       post_date: Yup.date().required('Post date is required'),
     }),
     onSubmit: async (values, { resetForm }) => {
@@ -37,6 +37,27 @@ const JobCreateForm = () => {
       }
     },
   });
+
+  const handleAddQualification = () => {
+    if (qualificationInput) {
+      formik.setFieldValue('qualification', [...formik.values.qualification, qualificationInput]);
+      setQualificationInput('');
+    }
+  };
+
+  const handleAddExperience = () => {
+    if (experienceInput) {
+      formik.setFieldValue('experience', [...formik.values.experience, experienceInput]);
+      setExperienceInput('');
+    }
+  };
+
+  const handleAddSkill = () => {
+    if (skillsInput) {
+      formik.setFieldValue('skills', [...formik.values.skills, skillsInput]);
+      setSkillsInput('');
+    }
+  };
 
   return (
     <div className="flex items-center justify-center">
@@ -62,23 +83,23 @@ const JobCreateForm = () => {
 
             {/* Job Type */}
             <div>
-                 <label className="block bg-white font-medium mb-2">Job Type</label>
-                 <select
-                   name="job_type"
-                   value={formik.values.job_type}
-                   onChange={formik.handleChange}
-                   onBlur={formik.handleBlur}
-                   className={`w-full border  bg-white ${formik.touched.job_type && formik.errors.job_type ? 'border-red-500' : 'border-gray-300'} rounded-lg p-3 focus:border-blue-500`}
-                 >
-                   <option value="">Select Job Type</option> {/* Placeholder option */}
-                   <option value="full_time">Full-Time</option>
-                   <option value="half_time">Half-Time</option>
-                 </select>
-                 {formik.touched.job_type && formik.errors.job_type && (
-                   <p className="text-red-500 text-sm mt-1">{formik.errors.job_type}</p>
-                 )}
-               </div>
-
+              <label className="block text-gray-600 font-medium mb-2">Job Type</label>
+              <select
+                name="job_type"
+                value={formik.values.job_type}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`w-full border ${formik.touched.job_type && formik.errors.job_type ? 'border-red-500' : 'border-gray-300'} rounded-lg p-3 focus:border-blue-500`}
+              >
+                <option value="">Select Job Type</option>
+                <option value="full_time">Full-Time</option>
+                <option value="part_time">Part-Time</option>
+                <option value="internship">Internship</option>
+              </select>
+              {formik.touched.job_type && formik.errors.job_type && (
+                <p className="text-red-500 text-sm mt-1">{formik.errors.job_type}</p>
+              )}
+            </div>
 
             {/* Job Description */}
             <div className="col-span-2">
@@ -101,15 +122,18 @@ const JobCreateForm = () => {
               <label className="block text-gray-600 font-medium mb-2">Qualifications</label>
               <input
                 type="text"
-                name="requirement.Qualifications"
-                value={formik.values.requirement.Qualifications}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={`w-full border ${formik.touched.requirement?.Qualifications && formik.errors.requirement?.Qualifications ? 'border-red-500' : 'border-gray-300'} rounded-lg p-3 focus:border-blue-500`}
+                value={qualificationInput}
+                onChange={(e) => setQualificationInput(e.target.value)}
+                className="w-full border-gray-300 rounded-lg p-3 mb-2"
               />
-              {formik.touched.requirement?.Qualifications && formik.errors.requirement?.Qualifications && (
-                <p className="text-red-500 text-sm mt-1">{formik.errors.requirement.Qualifications}</p>
-              )}
+              <button type="button" onClick={handleAddQualification} className="py-1 px-3 bg-blue-500 text-white rounded-lg">
+                Add Qualification
+              </button>
+              <ul className="mt-2">
+                {formik.values.qualification.map((qual, index) => (
+                  <li key={index} className="text-gray-600">{qual}</li>
+                ))}
+              </ul>
             </div>
 
             {/* Experience */}
@@ -117,15 +141,18 @@ const JobCreateForm = () => {
               <label className="block text-gray-600 font-medium mb-2">Experience</label>
               <input
                 type="text"
-                name="requirement.experience"
-                value={formik.values.requirement.experience}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={`w-full border ${formik.touched.requirement?.experience && formik.errors.requirement?.experience ? 'border-red-500' : 'border-gray-300'} rounded-lg p-3 focus:border-blue-500`}
+                value={experienceInput}
+                onChange={(e) => setExperienceInput(e.target.value)}
+                className="w-full border-gray-300 rounded-lg p-3 mb-2"
               />
-              {formik.touched.requirement?.experience && formik.errors.requirement?.experience && (
-                <p className="text-red-500 text-sm mt-1">{formik.errors.requirement.experience}</p>
-              )}
+              <button type="button" onClick={handleAddExperience} className="py-1 px-3 bg-blue-500 text-white rounded-lg">
+                Add Experience
+              </button>
+              <ul className="mt-2">
+                {formik.values.experience.map((exp, index) => (
+                  <li key={index} className="text-gray-600">{exp}</li>
+                ))}
+              </ul>
             </div>
 
             {/* Skills */}
@@ -133,15 +160,18 @@ const JobCreateForm = () => {
               <label className="block text-gray-600 font-medium mb-2">Skills</label>
               <input
                 type="text"
-                name="requirement.Skills"
-                value={formik.values.requirement.Skills}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={`w-full border ${formik.touched.requirement?.Skills && formik.errors.requirement?.Skills ? 'border-red-500' : 'border-gray-300'} rounded-lg p-3 focus:border-blue-500`}
+                value={skillsInput}
+                onChange={(e) => setSkillsInput(e.target.value)}
+                className="w-full border-gray-300 rounded-lg p-3 mb-2"
               />
-              {formik.touched.requirement?.Skills && formik.errors.requirement?.Skills && (
-                <p className="text-red-500 text-sm mt-1">{formik.errors.requirement.Skills}</p>
-              )}
+              <button type="button" onClick={handleAddSkill} className="py-1 px-3 bg-blue-500 text-white rounded-lg">
+                Add Skill
+              </button>
+              <ul className="mt-2">
+                {formik.values.skills.map((skill, index) => (
+                  <li key={index} className="text-gray-600">{skill}</li>
+                ))}
+              </ul>
             </div>
 
             {/* Post Date */}

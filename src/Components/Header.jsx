@@ -1,34 +1,31 @@
 import React from 'react';
-import { IoOptions } from 'react-icons/io5';
-import image from '../assets/Images/logo-black.png';
+import { CiSearch } from "react-icons/ci";
+import { MdOutlineEditNotifications } from "react-icons/md";
+import image from '../assets/images/logo-black.png';
 
 function Header({ toggleSidebar }) {
- 
   return (
-    <div className='bg-white w-full p-4'>
-      <div className='flex justify-between items-center w-full mx-auto px-4 sm:px-6'>
-        {/* Left section: Logo and Icon */}
-        <div className='flex items-center'>
-          {/* Logo */}
-          <img src={image} className='h-10 w-auto md:h-12 md:w-48 lg:h-12' alt="Logo" />
-        </div>
+    <header className="bg-white w-full flex justify-between items-center">
+      <div className="flex items-center ml-[10px] mr-[15px] mt-[16px] ">
+        {/* Logo */}
+        <img src={image} className="h-[1121px] md:h-12 w-[202px]" alt="Logo" />
 
-        {/* Center section: Dashboard title */}
-        <div className='absolute left-1/2 transform -translate-x-1/2'>
-          <h1 className='text-lg tracking-wider sm:text-xl md:text-2xl lg:text-3xl font-sans font-semibold'>
-            Admin Dashboard
-          </h1>
-        </div>
-
-        {/* Right section: Options button */}
-        <div>
-          <IoOptions
-            className='ml-4 text-cyan-400 font-bold text-2xl md:text-3xl lg:text-4xl'
-            onClick={toggleSidebar}
+        {/* Search Bar */}
+        <div className="flex items-center ml-8 w-72 h-8 rounded-lg border px-2">
+          <CiSearch className="text-gray-600 text-xl" />
+          <input
+            type="text"
+            placeholder="Search Now..."
+            className="w-full bg-transparent border-none outline-none text-sm text-gray-800 placeholder-gray-500"
           />
         </div>
       </div>
-    </div>
+
+      <div className="flex items-center gap-4">
+        <MdOutlineEditNotifications className="text-2xl" />
+        <div className="h-10 w-10 bg-blue-200 rounded-full"></div>
+      </div>
+    </header>
   );
 }
 

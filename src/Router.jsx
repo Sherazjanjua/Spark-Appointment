@@ -9,6 +9,7 @@ import JobDetails from './Components/Jobs/JobDetails'; // New component for job 
 import CreateSlots from './Components/Slots/CreateSlots';
 import ShowSlots from './Components/Slots/ShowSlots';
 import ShowAppointments from './Components/Appointments/ShowAppointments';
+import Dashnoard from './Components/Dashnoard';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
               { path: ':jobId', element: <JobDetails /> }, // Dynamic route for job details
             ],
           },
+          { path: '' , element: <Dashnoard />},
           { path: 'createslot', element: <CreateSlots /> },
           { path: 'showslots', element: <ShowSlots /> },
           { path: 'appointments', element: <ShowAppointments /> }, // Added for appointments

@@ -4,6 +4,7 @@ import { FaChevronDown, FaChevronUp, FaGraduationCap } from 'react-icons/fa';
 import { FaCheckToSlot } from 'react-icons/fa6';
 import { MdWatchLater } from 'react-icons/md';
 import { GoDotFill } from 'react-icons/go';
+import { LuLayoutDashboard } from "react-icons/lu";
 
 function SideBar({ isVisible }) {
   const [showJobs, setShowJobs] = useState(false);
@@ -19,9 +20,25 @@ function SideBar({ isVisible }) {
   };
 
   return (
-    <div className={`flex flex-col w-72 h-screen bg-white py-4 transition-transform duration-1000 ${isVisible ? '' : '-translate-x-full'}`}>
+    <div className={`flex flex-col w-60 h-screen bg-white py-4 transition-transform duration-1000 ${isVisible ? '' : '-translate-x-full'}`}>
+
+    <div className="mt-10 mb-4 relative hover:text-black">
+
+    <LuLayoutDashboard
+              className={`text-gray-700 absolute left-4 top-1 text-3xl `} 
+              />
+    <button
+          className={`flex ml-12 w-[75%] text-gray-700 py-2 px-2 hover:bg-gray-200 hover:text-black `}
+          // onClick={() => handleSectionClick('jobs')}
+        >
+            <Link to="/admin" className="py-1 hover:text-black text-gray-700 tracking-wide">
+                Dashboard
+              </Link>        </button>
+    </div>
+
       {/* Manage Jobs */}
-      <div className="mt-10 mb-4 relative hover:text-black">
+      <div className=" mb-4 mt-4 relative hover:text-black">
+        
         <FaGraduationCap 
           onClick={() => handleSectionClick('jobs')}
           className={`text-gray-700 absolute left-4 top-1 text-3xl ${activeSection === 'jobs' ? 'text-blue-500' : ''}`} 
@@ -30,7 +47,7 @@ function SideBar({ isVisible }) {
           className={`flex ml-12 w-[75%] text-gray-700 py-2 px-2 hover:bg-gray-200 hover:text-black ${activeSection === 'jobs' ? 'bg-gray-200 text-black' : ''}`}
           onClick={() => handleSectionClick('jobs')}
         >
-          <span>Manage Jobs</span>
+          <span className='tracking-wide'>Manage Jobs</span>
         </button>
         {showJobs && (
           <div className="flex flex-col mt-2 ml-6 space-y-2 animate-slide-down">
@@ -51,7 +68,7 @@ function SideBar({ isVisible }) {
       </div>
 
       {/* Manage Slots */}
-      <div className="mb-4 relative hover:text-black">
+      <div className="mb-4 mt-4 relative hover:text-black">
         <FaCheckToSlot
           onClick={() => handleSectionClick('slots')}
           className={`text-gray-700 absolute left-4 top-2 text-2xl ${activeSection === 'slots' ? 'text-blue-500' : ''}`} 
@@ -60,7 +77,7 @@ function SideBar({ isVisible }) {
           className={`flex ml-12 w-[75%] py-2 px-2 hover:bg-gray-200 hover:text-black text-gray-700 ${activeSection === 'slots' ? 'bg-gray-200 text-black' : ''}`}
           onClick={() => handleSectionClick('slots')}
         >
-          <span>Manage Slots</span>
+          <span className='tracking-wide'>Manage Slots</span>
         </button>
         {showSlots && (
           <div className="flex flex-col mt-2 ml-6 space-y-2 animate-slide-down">
@@ -81,7 +98,7 @@ function SideBar({ isVisible }) {
       </div>
 
       {/* Appointments */}
-      <div className="mb-4 relative hover:text-black">
+      <div className="mb-4 mt-4 relative hover:text-black">
         <MdWatchLater
           onClick={() => handleSectionClick('appointments')}
           className={`text-gray-700 absolute left-4 top-2.5 text-2xl ${activeSection === 'appointments' ? 'text-blue-500' : ''}`} 
@@ -90,7 +107,7 @@ function SideBar({ isVisible }) {
           className={`flex ml-12 w-[75%] py-2 px-2 hover:bg-gray-200 hover:text-black text-gray-700 ${activeSection === 'appointments' ? 'bg-gray-200 text-black' : ''}`}
           onClick={() => handleSectionClick('appointments')}
         >
-          <span>Appointments</span>
+          <span className='tracking-wide'>Appointments</span>
         </button>
         {showAppointments && (
           <div className="flex flex-col mt-2 ml-6 space-y-2 animate-slide-down">
@@ -103,6 +120,18 @@ function SideBar({ isVisible }) {
           </div>
         )}
       </div>
+      <div className="mb-4 mt-4 relative hover:text-black">
+        <MdWatchLater
+          onClick={() => handleSectionClick('appointments')}
+          className={`text-gray-700 absolute left-4 top-2.5 text-2xl `} 
+        />
+        <button
+          className={`flex ml-12 w-[75%] py-2 px-2 hover:bg-gray-200 hover:text-black text-gray-700 `}
+          // onClick={() => handleSectionClick('appointments')}
+        >
+          <span className='tracking-wide'>Settings</span>
+        </button>
+        </div>
     </div>
   );
 }

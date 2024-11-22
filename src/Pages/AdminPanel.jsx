@@ -2,26 +2,29 @@ import React, { useState } from "react";
 import Header from '../Components/Header';
 import SideBar from "../Components/SideBar";
 import { Outlet } from 'react-router-dom';
+import Dashboard from "../Components/Dashnoard";
+
 
 function AdminPanel() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   return (
-    <>
-      <div>
-        <Header toggleSidebar={() => setIsSidebarVisible(!isSidebarVisible)} />
-      </div>
-      <div className="flex md:flex-row w-full justify-start  h-screen">
-        <div className="w-full md:w-[20%]">
-          <SideBar isVisible={isSidebarVisible} setisVisible={ setIsSidebarVisible} />
-        </div>
+    <div className="h-screen flex flex-col bg-gray-100">
+      {/* Header */}
+      <Header toggleSidebar={() => setIsSidebarVisible(!isSidebarVisible)} />
+
+      {/* Content */}
+      <div className="flex h-full">
+        {/* Sidebar */}
+        <SideBar isVisible={isSidebarVisible} toggleVisibility={setIsSidebarVisible} />
 
         {/* Main Content */}
-        <div className="w-full md:w-[80%] p-4  overflow-auto">
+        <main className="w-full md:w-[82%] p-4 overflow-auto">
           <Outlet />
-        </div>
+        </main>
       </div>
-    </>
+    </div>
   );
 }
+
 export default AdminPanel;

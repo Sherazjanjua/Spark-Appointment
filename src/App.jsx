@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div  className='bg-gray-200' >    
+    <div  className='' >    
       <div className='w-full bg-white   opacity-98 flex items-center justify-center'>
        
       </div>
