@@ -1,6 +1,10 @@
 import React from 'react';
 import OverviewChart from './OverviewChart';
 import ApplicationAnalysis from "./ApplicationAnalysis";
+import apps from '../assets/Images/apps.png';
+import emp from '../assets/Images/emp.png';
+import hires from '../assets/Images/hires.png';
+import rej from '../assets/Images/rej.png';
 
 
 
@@ -36,7 +40,7 @@ function Dashnoard() {
         <div className='w-[25%] bg-white shadow-lg rounded-lg p-4 m-4 space-y-2'>
         <div className='flex justify-between items-center'>
         <p className='font-medium text-gray-500'>Total Employees</p>
-        <h1 className='text-blue-400 text-xl'>📈</h1>
+        <img src={emp} alt="" />
         </div>
         <h1 className='text-4xl font-bold'>700</h1>
          <div className='flex justify-between items-center text-sm text-gray-500'>
@@ -49,8 +53,9 @@ function Dashnoard() {
          <div className='w-[25%] bg-white shadow-lg rounded-lg p-4 m-4 space-y-2'>
            <div className='flex justify-between items-center'>
              <p className='font-medium text-gray-500'>Total Applicants</p>
-             <h1 className='text-blue-400 text-xl'>📉</h1>
-           </div>
+
+            <img src={apps} alt="" className='Vector-3' />  
+          </div>
            <h1 className='text-4xl font-bold'>900</h1>
            <div className='flex justify-between items-center text-sm text-gray-500'>
              <p>Since last week</p>
@@ -62,7 +67,8 @@ function Dashnoard() {
          <div className='w-[25%] bg-white shadow-lg rounded-lg p-4 m-4 space-y-2'>
           <div className='flex justify-between items-center'>
             <p className='font-medium text-gray-500'>New Hires</p>
-            <h1 className='text-blue-400 text-xl'>📊</h1>
+            <img src={hires} alt="" />
+
           </div>
           <h1 className='text-4xl font-bold'>30</h1>
           <div className='flex justify-between items-center text-sm text-gray-500'>
@@ -75,7 +81,7 @@ function Dashnoard() {
   <div className='w-[25%] bg-white shadow-lg rounded-lg p-4 m-4 space-y-2'>
     <div className='flex justify-between items-center'>
       <p className='font-medium text-gray-500'>Rejected Applications</p>
-      <h1 className='text-red-400 text-xl'>📉</h1>
+      <img src={rej} alt="" />
     </div>
     <h1 className='text-4xl font-bold'>60</h1>
     <div className='flex justify-between items-center text-sm text-gray-500'>
