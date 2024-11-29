@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import up from '../assets/Images/up.svg'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -37,17 +38,20 @@ const OverviewChart = ({ title, avg, percentage, labels, dataSets }) => {
   
 
   return (
-    <div className="bg-white shadow-sm rounded-lg p-3 space-y-1">
+    <div className="bg-white shadow-sm rounded-lg p-6 space-y-1">
       <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
-          <p className="text-sm text-gray-500">Avg per month</p>
-          <h1 className="text-4xl font-bold text-blue-500 mt-2">
+        <div className='relative'>
+          <h2 className="w-[79px] h-[21px] mt-[4px] mr-[48px] mb-0 ml-[27px] text-[17px] font-semibold text-black">{title}</h2>
+          <p className="w-[91px] h-[16px] mt-[3px] mr-[36px] mb-[1px] ml-[27px] text-[13px] font-medium text-[#a5a5a5]">Avg per month</p>
+
+          <h1 className="w-[48px] h-[33px] mt-[5px] mr-[31px] mb-[11px] ml-[26px] text-[27px] font-inter font-medium text-[#18ade4]"
+          >
             {avg}
-            <span className="text-sm text-green-500 ml-2">{percentage} ↑</span>
+            <span className="  w-[38px] h-[16px] mr-[13px] ml-[10px] text-[13px] font-inter font-medium text-black">{percentage}
+               <img src={up} alt=""  className="absolute top-[72px] left-[120px] "/></span>
           </h1>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-[-74px]">
           <button className="py- px-2 rounded-lg bg-blue-500 text-white text-sm">1 Year</button>
           <button className="py- px-2 rounded-lg border text-sm text-gray-500">6 months</button>
           <button className="py- px-2 rounded-lg border text-sm text-gray-500">3 months</button>
@@ -62,7 +66,7 @@ const OverviewChart = ({ title, avg, percentage, labels, dataSets }) => {
           <div className="w-3 h-3 rounded-full bg-gray-400"></div> Interviews
         </div>
       </div>
-      <div className="w-full h-56">
+      <div className="w-full p-4 h-56">
         <Bar data={data} options={options} />
       </div>
     </div>

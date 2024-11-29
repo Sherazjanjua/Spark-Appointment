@@ -1,137 +1,93 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaChevronDown, FaChevronUp, FaGraduationCap } from 'react-icons/fa';
-import { FaCheckToSlot } from 'react-icons/fa6';
-import { MdWatchLater } from 'react-icons/md';
 import { GoDotFill } from 'react-icons/go';
-import { LuLayoutDashboard } from "react-icons/lu";
+import image from '../assets/images/logo-black.png';
+import dashboard from '../assets/images/dashboard.svg';
+import jobs from '../assets/images/jobs.svg';
+import slots from '../assets/images/slots.svg';
+import appoint from '../assets/images/appoint.svg';
+import setting from '../assets/images/setting.svg';
 
 function SideBar({ isVisible }) {
   const [showJobs, setShowJobs] = useState(false);
   const [showSlots, setShowSlots] = useState(false);
   const [showAppointments, setShowAppointments] = useState(false);
-  const [activeSection, setActiveSection] = useState(null);
 
   const handleSectionClick = (section) => {
-    setActiveSection(section);
     if (section === 'jobs') setShowJobs(!showJobs);
     if (section === 'slots') setShowSlots(!showSlots);
     if (section === 'appointments') setShowAppointments(!showAppointments);
   };
 
   return (
-    <div className={`flex flex-col w-60 h-screen bg-white py-4 transition-transform duration-1000 ${isVisible ? '' : '-translate-x-full'}`}>
+    <div className="w-[202px] p-4 bg-white">
+      <div className="mb-12">
+        <img src={image} alt="Logo" className="w-full" />
+      </div>
 
-    <div className="mt-10 mb-4 relative hover:text-black">
-
-    <LuLayoutDashboard
-              className={`text-gray-700 absolute left-4 top-1 text-3xl `} 
-              />
-    <button
-          className={`flex ml-12 w-[75%] text-gray-700 py-2 px-2 hover:bg-gray-200 hover:text-black `}
-          // onClick={() => handleSectionClick('jobs')}
-        >
-            <Link to="/admin" className="py-1 hover:text-black text-gray-700 tracking-wide">
-                Dashboard
-              </Link>        </button>
-    </div>
+      <div className="flex items-center mt-16 mb-6">
+        <img src={dashboard} alt="Dashboard" className="w-5 h-5" />
+        <Link to="/admin" className="ml-4 text-sm text-black">
+          Dashboard
+        </Link>
+      </div>
 
       {/* Manage Jobs */}
-      <div className=" mb-4 mt-4 relative hover:text-black">
-        
-        <FaGraduationCap 
-          onClick={() => handleSectionClick('jobs')}
-          className={`text-gray-700 absolute left-4 top-1 text-3xl ${activeSection === 'jobs' ? 'text-blue-500' : ''}`} 
-        />
-        <button
-          className={`flex ml-12 w-[75%] text-gray-700 py-2 px-2 hover:bg-gray-200 hover:text-black ${activeSection === 'jobs' ? 'bg-gray-200 text-black' : ''}`}
-          onClick={() => handleSectionClick('jobs')}
-        >
-          <span className='tracking-wide'>Manage Jobs</span>
-        </button>
+      <div className="flex flex-col mt-10">
+        <div className="flex items-center cursor-pointer" onClick={() => handleSectionClick('jobs')}>
+          <img src={jobs} alt="Jobs" className="w-5 h-5" />
+          <span className="ml-4 text-sm text-black">Manage Jobs</span>
+        </div>
         {showJobs && (
-          <div className="flex flex-col mt-2 ml-6 space-y-2 animate-slide-down">
-            <div className='flex relative'>
-              <Link to="/admin/jobs/create" className="py-1 ml-12 px-2 hover:text-black text-gray-700">
-                Post a Job
-              </Link>
-              <GoDotFill className='absolute top-2.5 left-9 text-gray-700' /> 
-            </div>
-            <div className='flex relative'>
-              <Link to="/admin/jobs/show" className="py-1 ml-12 px-2 hover:text-black text-gray-500">
-                Show Jobs
-              </Link>
-              <GoDotFill className='absolute top-2.5 left-9 text-gray-400' /> 
-            </div>
+          <div className="ml-9 mt-6 space-y-2">
+            <Link to="/admin/jobs/create" className="flex items-center text-sm text-black">
+              <GoDotFill className="mr-2" /> Post a Job
+            </Link>
+            <Link to="/admin/jobs/show" className="flex items-center text-sm text-black">
+              <GoDotFill className="mr-2" /> Show Jobs
+            </Link>
           </div>
         )}
       </div>
 
       {/* Manage Slots */}
-      <div className="mb-4 mt-4 relative hover:text-black">
-        <FaCheckToSlot
-          onClick={() => handleSectionClick('slots')}
-          className={`text-gray-700 absolute left-4 top-2 text-2xl ${activeSection === 'slots' ? 'text-blue-500' : ''}`} 
-        />
-        <button
-          className={`flex ml-12 w-[75%] py-2 px-2 hover:bg-gray-200 hover:text-black text-gray-700 ${activeSection === 'slots' ? 'bg-gray-200 text-black' : ''}`}
-          onClick={() => handleSectionClick('slots')}
-        >
-          <span className='tracking-wide'>Manage Slots</span>
-        </button>
+      <div className="flex flex-col mt-10">
+        <div className="flex items-center cursor-pointer" onClick={() => handleSectionClick('slots')}>
+          <img src={slots} alt="Slots" className="w-5 h-5" />
+          <span className="ml-4 text-sm text-black">Manage Slots</span>
+        </div>
         {showSlots && (
-          <div className="flex flex-col mt-2 ml-6 space-y-2 animate-slide-down">
-            <div className='flex relative'>
-              <Link to="/admin/createslot" className="py-1 ml-12 px-2 hover:text-black text-gray-500">
-                Create a Slot
-              </Link>
-              <GoDotFill className='absolute top-2.5 left-9 text-gray-400' /> 
-            </div>
-            <div className='flex relative'>
-              <Link to="/admin/showslots" className="py-1 ml-12 px-2 hover:text-black text-gray-500">
-                Show all Slots
-              </Link>
-              <GoDotFill className='absolute top-2.5 left-9 text-gray-400' /> 
-            </div>
+          <div className="ml-9 mt-6 space-y-2">
+            <Link to="/admin/createslot" className="flex items-center text-sm text-black">
+              <GoDotFill className="mr-2" /> Create a Slot
+            </Link>
+            <Link to="/admin/showslots" className="flex items-center text-sm text-black">
+              <GoDotFill className="mr-2" /> Show all Slots
+            </Link>
           </div>
         )}
       </div>
 
       {/* Appointments */}
-      <div className="mb-4 mt-4 relative hover:text-black">
-        <MdWatchLater
-          onClick={() => handleSectionClick('appointments')}
-          className={`text-gray-700 absolute left-4 top-2.5 text-2xl ${activeSection === 'appointments' ? 'text-blue-500' : ''}`} 
-        />
-        <button
-          className={`flex ml-12 w-[75%] py-2 px-2 hover:bg-gray-200 hover:text-black text-gray-700 ${activeSection === 'appointments' ? 'bg-gray-200 text-black' : ''}`}
-          onClick={() => handleSectionClick('appointments')}
-        >
-          <span className='tracking-wide'>Appointments</span>
-        </button>
+      <div className="flex flex-col mt-10">
+        <div className="flex items-center cursor-pointer" onClick={() => handleSectionClick('appointments')}>
+          <img src={appoint} alt="Appointments" className="w-5 h-5" />
+          <span className="ml-4 text-sm text-black">Appointments</span>
+        </div>
         {showAppointments && (
-          <div className="flex flex-col mt-2 ml-6 space-y-2 animate-slide-down">
-            <div className='flex relative'>
-              <Link to="/admin/appointments" className="py-1 ml-11 px-2 hover:text-black text-gray-500">
-                Show Appointments
-              </Link>
-              <GoDotFill className='absolute top-2.5 left-9 text-gray-400' /> 
-            </div>
+          <div className="ml-9 mt-6 space-y-2">
+            <Link to="/admin/appointments" className="flex items-center justify-center text-sm text-black">
+              <GoDotFill className="mr-2" /> Show Appointments
+            </Link>
           </div>
         )}
       </div>
-      <div className="mb-4 mt-4 relative hover:text-black">
-        <MdWatchLater
-          onClick={() => handleSectionClick('appointments')}
-          className={`text-gray-700 absolute left-4 top-2.5 text-2xl `} 
-        />
-        <button
-          className={`flex ml-12 w-[75%] py-2 px-2 hover:bg-gray-200 hover:text-black text-gray-700 `}
-          // onClick={() => handleSectionClick('appointments')}
-        >
-          <span className='tracking-wide'>Settings</span>
-        </button>
-        </div>
+
+      {/* Settings */}
+      <div className="flex items-center mt-10">
+        <img src={setting} alt="Settings" className="w-5 h-5" />
+        <span className="ml-4 text-sm text-black">Settings</span>
+      </div>
     </div>
   );
 }

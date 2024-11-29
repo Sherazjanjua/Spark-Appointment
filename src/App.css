@@ -5,3 +5,12 @@
     margin: 0 0 46px 70px;
     border: solid 2px #18ade4;
   }
+  .Rectangle-2 {
+    width: 372px;
+    height: 42px;
+    margin: 15px 237px 25px 35px;
+    padding: 12px 246px 11px 9px;
+    border-radius: 7px;
+    border: solid 1px #f0f0f0;
+    background-color: #fff;
+  }

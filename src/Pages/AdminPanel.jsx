@@ -6,24 +6,30 @@ import Dashboard from "../Components/Dashnoard";
 
 
 function AdminPanel() {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
-  return (
-    <div className="h-screen flex flex-col bg-gray-100">
-      {/* Header */}
-      <Header toggleSidebar={() => setIsSidebarVisible(!isSidebarVisible)} />
+  return (<>
+    
+    <div className="flex h-screen">
+  {/* Sidebar */}
+  <div className="w-[202px]">
+    <SideBar />
+  </div>
 
-      {/* Content */}
-      <div className="flex h-full">
-        {/* Sidebar */}
-        <SideBar isVisible={isSidebarVisible} toggleVisibility={setIsSidebarVisible} />
-
-        {/* Main Content */}
-        <main className="w-full md:w-[82%] p-4 overflow-auto">
-          <Outlet />
-        </main>
-      </div>
+  {/* Main Content */}
+  <div className="flex flex-col flex-1 w-[1440px] bg-gray-100">
+    {/* Header */}
+    <div className="">
+      <Header />
     </div>
+
+    {/* Outlet */}
+    <main className="flex-1 overflow-y-auto">
+      <Outlet />
+    </main>
+  </div>
+</div>
+
+    </>
   );
 }
 

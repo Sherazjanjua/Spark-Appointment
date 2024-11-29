@@ -1,31 +1,32 @@
 import React from 'react';
-import { CiSearch } from "react-icons/ci";
-import { MdOutlineEditNotifications } from "react-icons/md";
-import image from '../assets/images/logo-black.png';
+import search from '../assets/images/search.svg';
+import notnprfl from '../assets/images/notnprfl.svg';
 
 function Header({ toggleSidebar }) {
   return (
-    <header className="bg-white w-full flex justify-between items-center">
-      <div className="flex items-center ml-[10px] mr-[15px] mt-[16px] ">
-        {/* Logo */}
-        <img src={image} className="h-[1121px] md:h-12 w-[202px]" alt="Logo" />
+  <>
+    <div className='flex w-full justify-between'>
 
-        {/* Search Bar */}
-        <div className="flex items-center ml-8 w-72 h-8 rounded-lg border px-2">
-          <CiSearch className="text-gray-600 text-xl" />
-          <input
-            type="text"
-            placeholder="Search Now..."
-            className="w-full bg-transparent border-none outline-none text-sm text-gray-800 placeholder-gray-500"
-          />
-        </div>
+     <div className="w-[372px] h-[42px] m-[15px_0px_25px_35px] p-[12px_246px_11px_9px] rounded-[7px] border border-[#f0f0f0] bg-white flex items-center">
+       <div className="w-[18px] h-[18px] mr-[10px]">
+        <img src={search} alt="Search Icon" />
+       </div>
+  
+         <input 
+            type="text" 
+            placeholder="Search now..." 
+            className="w-full bg-transparent border-none outline-none text-sm text-black placeholder-black"
+         />
       </div>
+      <div className='mt-[15px] mr-[40px]'>
+        <img src={notnprfl} alt="" className='w-[93px] h-[50px]' />
+      </div>
+    </div>
 
-      <div className="flex items-center gap-4">
-        <MdOutlineEditNotifications className="text-2xl" />
-        <div className="h-10 w-10 bg-blue-200 rounded-full"></div>
-      </div>
-    </header>
+
+    
+  </>
+
   );
 }
 
